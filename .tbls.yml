@@ -1,0 +1,9 @@
+# .tbls.yml
+
+# DSN (Database Source Name) to connect database
+dsn: mysql://root:@localhost:3306/gotodo
+
+# Path to generate document
+# Default is `dbdoc`
+docPath: internal/db/schema
+

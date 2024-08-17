@@ -1,0 +1,35 @@
+services:
+  app:
+    build:
+      args:
+        - target=dev
+    volumes:
+      - .:/app
+    ports:
+      - 8080:8080
+    environment:
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_NAME: ${DB_NAME}
+    depends_on:
+      - db
+  db:
+    image: mysql:8.0
+    volumes:
+      - db:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASS}
+      MYSQL_DATABASE: ${DB_NAME}
+      LANG: "C.UTF-8"
+  nginx:
+    container_name: "nginx"
+    build: ./nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - "app"
+volumes:
+  db:
+

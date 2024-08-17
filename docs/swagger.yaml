@@ -1,0 +1,94 @@
+basePath: /
+definitions:
+  todos.Todo:
+    properties:
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      title:
+        type: string
+      todo_id:
+        type: integer
+      updated_at:
+        type: string
+    type: object
+externalDocs:
+  description: GitHub
+  url: https://github.com/v420v/TodoApp
+host: 127.0.0.1:8080
+info:
+  contact:
+    email: ibuki420v@gmail.com
+  description: A simple todo rest api
+  license:
+    name: MIT LICENSE
+    url: https://github.com/v420v/TodoApp/blob/main/LICENSE.md
+  title: Todo REST API
+  version: "1.0"
+paths:
+  /todos:
+    get:
+      consumes:
+      - application/json
+      description: get a list of TODOs that are not deleted.
+      parameters:
+      - description: page number
+        in: query
+        name: page
+        type: integer
+      - description: number of items per page
+        in: query
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/todos.Todo'
+            type: array
+      summary: Get Todo list
+      tags:
+      - todos
+    post:
+      consumes:
+      - application/json
+      description: insert todo to db
+      parameters:
+      - description: Todo object
+        in: body
+        name: todo
+        required: true
+        schema:
+          $ref: '#/definitions/todos.Todo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/todos.Todo'
+      summary: Post todo
+      tags:
+      - todos
+  /todos/{id}/delete:
+    post:
+      consumes:
+      - application/json
+      description: delete todo by id
+      parameters:
+      - description: user id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+      summary: Delete todo
+      tags:
+      - todos
+swagger: "2.0"

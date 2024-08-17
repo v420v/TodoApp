@@ -1,0 +1,35 @@
+root = "."
+
+tmp_dir = "tmp"
+
+[build]
+cmd = "go build -o ./tmp/main cmd/main.go"
+bin = "tmp/main"
+
+full_bin = "APP_ENV=dev APP_USER=air ./tmp/main 8080"
+
+inlcude_ext = ["go", "tpl", "tmpl", "html"]
+inlcude_dir = []
+exclude_file = []
+exclude_unchanged = true
+follow_symlink = true
+log = "air.log"
+deplay = 1000 #ms
+
+stop_on_error = true
+send_interrupt = false
+kill_delay = 500
+
+[log]
+time = false
+
+
+[color]
+main = "magenta"
+watcher = "cyan"
+build = "yellow"
+runner = "green"
+
+[misc]
+clean_on_exit = true
+

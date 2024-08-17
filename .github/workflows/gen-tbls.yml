@@ -1,0 +1,49 @@
+name: Update Schema Document
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-schema-document:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_DATABASE: gotodo
+          MYSQL_ALLOW_EMPTY_PASSWORD: true
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v3
+
+      - name: Init Schema
+        run: mysql -u root -h 127.0.0.1 gotodo < "./internal/db/createTable.sql"
+
+      - name: Setup tbls
+        uses: k1low/setup-tbls@v1
+
+      - name: Run tbls
+        env:
+          DATABASE: gotodo
+        run: |
+          rm -rf internal/db/schema
+          tbls doc
+
+      - name: Commit and Push
+        run: |
+          git config --local user.name "GitHub Action"
+          git config --local user.email "action@github.com"
+          git add internal/db/schema
+          if ! git diff-index --quiet HEAD --; then
+            git commit -m "github action tbls: update schema document"
+            git push origin main
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

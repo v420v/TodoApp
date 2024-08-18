@@ -100,6 +100,10 @@
 		padding: 0;
 		margin: 0;
 	}
+	button {
+		padding: 0;
+		margin: 0;
+	}
 	ul {
 		padding: 0;
 		list-style: none;
@@ -150,7 +154,6 @@
 		background-color: white;
 		color: rgb(45, 69, 165);
 		cursor: pointer;
-		box-sizing: border-box;
 	}
 </style>
 

@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/gorilla/csrf"
 	"github.com/gorilla/mux"
 	"github.com/v420v/go-api/internal/app/controller/services"
 	"github.com/v420v/go-api/internal/app/domain/todos"
@@ -76,6 +77,7 @@ func (c *TodoController) TodoListHandler(w http.ResponseWriter, req *http.Reques
 		return
 	}
 
+	w.Header().Add("X-CSRF-Token", csrf.Token(req))
 	json.NewEncoder(w).Encode(todoList)
 	w.WriteHeader(http.StatusOK)
 }

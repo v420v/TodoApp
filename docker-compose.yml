@@ -1,10 +1,20 @@
 services:
-  app:
+  web:
+    build: ./web
+    ports:
+      - '5173:5173'
+    volumes:
+      - ./web:/web
+      - /web/node_modules
+    environment:
+      - NODE_ENV=development
+
+  api:
     build:
       args:
         - target=dev
     volumes:
-      - .:/app
+      - .:/api
     ports:
       - 8080:8080
     environment:
@@ -13,6 +23,7 @@ services:
       DB_NAME: ${DB_NAME}
     depends_on:
       - db
+
   db:
     image: mysql:8.0
     volumes:
@@ -23,13 +34,14 @@ services:
       MYSQL_ROOT_PASSWORD: ${DB_PASS}
       MYSQL_DATABASE: ${DB_NAME}
       LANG: "C.UTF-8"
+
   nginx:
     container_name: "nginx"
     build: ./nginx
     ports:
       - "80:80"
     depends_on:
-      - "app"
+      - "api"
 volumes:
   db:
 

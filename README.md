@@ -1,5 +1,8 @@
 
-# Todo App
+<div align="center">
+<h1>Todo App</h1>
+<img width="600px" alt="Screenshot 2024-08-19 at 3 10 17" src="https://github.com/user-attachments/assets/3d8e1ff8-8d2f-4d9a-a935-9848774dd01e">
+</div>
 
 ## ENV
 ```env file
@@ -29,7 +32,7 @@ mysqldef -h db -P 3306 -u root -p secret gotodo < ./internal/db/createTable.sql
 ```
 
 ## API ドキュメント
-GitHub Actionで、mainブランチにプッシュすると、自動的にSwaggerを用いて `/docs` フォルダにAPIドキュメントが生成されるようになっております。
+mainブランチにプッシュすると、自動的にSwaggerを用いて `/docs` フォルダにAPIドキュメントを生成するGitHubActionを設定しました。
 <a href="https://v420v.github.io/TodoApp/swagger/">GitHub Pages</a>でいつでも見れるようにしました。
 
 ## ER図

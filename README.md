@@ -24,7 +24,7 @@ docker-compose up -d
 docker-compose down --rmi all
 ```
 
-## マイグレーション
+## スキーマ管理
 <a href="https://github.com/sqldef/sqldef">sqldef</a> を使うことで、データベーススキーマとコードベースのSQLスキーマファイルとの間の一貫性を保つことができ、スキーマのズレが生じるリスクを低減できます。簡単なTodoアプリなので <a href="https://github.com/sqldef/sqldef">sqldef</a> に決めました。
 ```sh
 docker exec -it go-server-app-1 bash

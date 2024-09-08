@@ -1,17 +1,6 @@
 basePath: /
 definitions:
-  todos.Todo:
-    properties:
-      created_at:
-        type: string
-      deleted_at:
-        type: string
-      title:
-        type: string
-      todo_id:
-        type: integer
-      updated_at:
-        type: string
+  todo.Todo:
     type: object
 externalDocs:
   description: GitHub
@@ -48,32 +37,11 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/todos.Todo'
+              $ref: '#/definitions/todo.Todo'
             type: array
       summary: Get Todo list
       tags:
-      - todos
-    post:
-      consumes:
-      - application/json
-      description: insert todo to db
-      parameters:
-      - description: Todo object
-        in: body
-        name: todo
-        required: true
-        schema:
-          $ref: '#/definitions/todos.Todo'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/todos.Todo'
-      summary: Post todo
-      tags:
-      - todos
+      - todo
   /todos/{id}/delete:
     post:
       consumes:
@@ -90,5 +58,5 @@ paths:
           description: OK
       summary: Delete todo
       tags:
-      - todos
+      - todo
 swagger: "2.0"

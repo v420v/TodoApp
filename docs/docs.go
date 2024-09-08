@@ -31,7 +31,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "todos"
+                    "todo"
                 ],
                 "summary": "Get Todo list",
                 "parameters": [
@@ -54,40 +54,8 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/todos.Todo"
+                                "$ref": "#/definitions/todo.Todo"
                             }
-                        }
-                    }
-                }
-            },
-            "post": {
-                "description": "insert todo to db",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "todos"
-                ],
-                "summary": "Post todo",
-                "parameters": [
-                    {
-                        "description": "Todo object",
-                        "name": "todo",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/todos.Todo"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/todos.Todo"
                         }
                     }
                 }
@@ -100,7 +68,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "todos"
+                    "todo"
                 ],
                 "summary": "Delete todo",
                 "parameters": [
@@ -121,25 +89,8 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "todos.Todo": {
-            "type": "object",
-            "properties": {
-                "created_at": {
-                    "type": "string"
-                },
-                "deleted_at": {
-                    "type": "string"
-                },
-                "title": {
-                    "type": "string"
-                },
-                "todo_id": {
-                    "type": "integer"
-                },
-                "updated_at": {
-                    "type": "string"
-                }
-            }
+        "todo.Todo": {
+            "type": "object"
         }
     },
     "externalDocs": {

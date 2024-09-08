@@ -1,7 +1,7 @@
 
 
 create table if not exists todos (
-    todo_id int primary key auto_increment,
+    todo_id varchar(255) primary key,
     title varchar(255) not null,
     created_at timestamp not null default current_timestamp,
     updated_at timestamp not null default current_timestamp,

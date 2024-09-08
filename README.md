@@ -27,8 +27,8 @@ docker-compose down --rmi all
 ## スキーマ管理
 <a href="https://github.com/sqldef/sqldef">sqldef</a> を使うことで、データベーススキーマとコードベースのSQLスキーマファイルとの間の一貫性を保つことができ、スキーマのズレが生じるリスクを低減できます。簡単なTodoアプリなので <a href="https://github.com/sqldef/sqldef">sqldef</a> に決めました。
 ```sh
-docker exec -it go-server-app-1 bash
-mysqldef -h db -P 3306 -u root -p secret gotodo < ./internal/db/createTable.sql
+$ docker compose exec api bash
+$ mysqldef -h db -P 3306 -u root -p secret gotodo < ./internal/db/createTable.sql
 ```
 
 ## API ドキュメント
@@ -38,8 +38,8 @@ mainブランチにプッシュすると、自動的にSwaggerを用いて `/doc
 ## ER図
 ER図は <a href="https://github.com/k1LoW/tbls">tbls</a> で管理し、`createTable.sql`に変更がある度にgithub actionで更新しています。ファイルは `/internal/db/schema` に配置してます。
 
-## CSRF対策
-<a href="https://gihtub.com/gorilla/csrf">gorilla/csrf</a> を使い対策を行いました。
+## CSRF対策 (WIP)
+<a href="https://github.com/gorilla/csrf">gorilla/csrf</a> を使い対策を行いました。
 
 ## LICENSE
 MIT

@@ -12,6 +12,7 @@ func CORSMiddleware(next http.Handler) http.Handler {
 		if origin != "http://127.0.0.1:5173" {
 			origin = "http://127.0.0.1:80"
 		}
+
 		w.Header().Set("Access-Control-Allow-Origin", origin)
 		w.Header().Set("Access-Control-Allow-Methods", "POST, PUT, DELETE, PATCH, OPTIONS")
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Origin, X-CSRF-Token")

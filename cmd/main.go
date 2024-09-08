@@ -10,7 +10,7 @@ import (
 
 	"github.com/charmbracelet/log"
 	"github.com/gorilla/mux"
-	"github.com/v420v/go-api/internal/app/router"
+	"github.com/v420v/go-api/internal/api/router"
 	"github.com/v420v/go-api/internal/db"
 )
 
@@ -26,16 +26,16 @@ func newServer(r *mux.Router) *http.Server {
 	}
 }
 
-//	@title						Todo REST API
-//	@version					1.0
-//	@description				A simple todo rest api
-//	@contact.email				ibuki420v@gmail.com
-//	@license.name				MIT LICENSE
-//	@license.url				https://github.com/v420v/TodoApp/blob/main/LICENSE.md
-//	@host						127.0.0.1:8080
-//	@BasePath					/
-//	@externalDocs.description	GitHub
-//	@externalDocs.url			https://github.com/v420v/TodoApp
+// @title						Todo REST API
+// @version						1.0
+// @description					A simple todo rest api
+// @contact.email				ibuki420v@gmail.com
+// @license.name				MIT LICENSE
+// @license.url					https://github.com/v420v/TodoApp/blob/main/LICENSE.md
+// @host						127.0.0.1:8080
+// @BasePath					/
+// @externalDocs.description	GitHub
+// @externalDocs.url			https://github.com/v420v/TodoApp
 func main() {
 	db, err := db.ConnectDB()
 	if err != nil {

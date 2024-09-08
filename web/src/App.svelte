@@ -1,9 +1,5 @@
 <script>
-	let csrfToken = "";
-
-	// TODO: ページネーションを実装
-	// TODO: 別の関数（方法）でCSRFトークンを取得
-	const getTodos = async () => {
+	const getTodoList = async () => {
 	    try {
 	        const res = await fetch("http://127.0.0.1/api/todos?limit=20", { credentials: 'include' });
 
@@ -11,20 +7,18 @@
 	            throw new Error(`HTTP error! status: ${res.status}`);
 	        }
 
-			csrfToken = res.headers.get('X-CSRF-Token');
-
 	        const data = await res.json();
 	        return data;
 	    } catch (error) {
-	        console.error("Failed to fetch todos:", error);
+	        console.error("Failed to fetch todoList:", error);
 	        return [];
 	    }
 	};
 
 	let newTodo = "";
-	let todos = [];
+	let todoList = [];
 
-	$: todos = getTodos();
+	$: todoList = getTodoList();
 
 	const addTodo = async (event) => {
 		event.preventDefault();
@@ -34,7 +28,6 @@
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
-					"X-CSRF-Token": csrfToken,
 				},
 				credentials: 'include',
 				body: JSON.stringify({ title: newTodo }),
@@ -42,7 +35,7 @@
 
 			if (response.ok) {
 				newTodo = "";
-				todos = await getTodos();
+				todoList = await getTodoList();
 			} else {
 				console.error("Failed to add todo:", response.status);
 			}
@@ -54,14 +47,13 @@
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",
-				"X-CSRF-Token": csrfToken,
 			},
 			credentials: 'include'
 		});
 
 		if (response.ok) {
 			newTodo = "";
-			todos = await getTodos();
+			todoList = await getTodoList();
 		} else {
 			console.error("Failed to add todo:", response.status);
 		}
@@ -78,14 +70,14 @@
 		/>
 	</form>
 
-	{#await todos}
+	{#await todoList}
 		<p>Loading...</p>
-	{:then todos}
+	{:then todoList}
 		<ul class="todo-items">
-			{#each todos as {todo_id, title}}
-				<li id={todo_id} class="todo-item">
+			{#each todoList as {id, title}}
+				<li id={id} class="todo-item">
 					{title}
-					<form class="delte-form" on:submit={deleteTodo(todo_id)}>
+					<form class="delte-form" on:submit={deleteTodo(id)}>
 						<button class="delete-btn" type="submit"><i class="fa-solid fa-xmark"></i></button>
 					</form>
 				</li>
@@ -93,7 +85,6 @@
 		</ul>
 	{/await}
 </div>
-
 
 <style>
 	input {
@@ -156,4 +147,3 @@
 		cursor: pointer;
 	}
 </style>
-

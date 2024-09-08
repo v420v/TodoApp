@@ -3,9 +3,9 @@ module github.com/v420v/go-api
 go 1.22.5
 
 require (
+	github.com/bwmarrin/snowflake v0.3.0
 	github.com/charmbracelet/log v0.4.0
 	github.com/go-sql-driver/mysql v1.8.1
-	github.com/gorilla/csrf v1.7.2
 	github.com/gorilla/mux v1.8.1
 	github.com/swaggo/swag v1.16.3
 	github.com/uptrace/bun v1.2.1
@@ -26,7 +26,6 @@ require (
 	github.com/go-openapi/jsonreference v0.19.6 // indirect
 	github.com/go-openapi/spec v0.20.4 // indirect
 	github.com/go-openapi/swag v0.19.15 // indirect
-	github.com/gorilla/securecookie v1.1.2 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/lucasb-eyer/go-colorful v1.2.0 // indirect

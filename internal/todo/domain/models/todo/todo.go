@@ -31,6 +31,9 @@ func NewTodo(title string) (Todo, error) {
 	if utf8.RuneCountInString(title) > 30 {
 		return Todo{}, errors.New("Todo title must be under 30 characters")
 	}
+	if utf8.RuneCountInString(title) == 0 {
+		return Todo{}, errors.New("Todo title must have at least one character")
+	}
 
 	id, err := NewId()
 	if err != nil {

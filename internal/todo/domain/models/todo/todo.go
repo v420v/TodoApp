@@ -1,7 +1,9 @@
 package todo
 
 import (
+	"errors"
 	"time"
+	"unicode/utf8"
 
 	"github.com/bwmarrin/snowflake"
 )
@@ -26,6 +28,10 @@ func NewId() (string, error) {
 }
 
 func NewTodo(title string) (Todo, error) {
+	if utf8.RuneCountInString(title) > 30 {
+		return Todo{}, errors.New("Todo title must be under 30 characters")
+	}
+
 	id, err := NewId()
 	if err != nil {
 		return Todo{}, err

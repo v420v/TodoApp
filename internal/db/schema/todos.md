@@ -7,7 +7,7 @@
 
 ```sql
 CREATE TABLE `todos` (
-  `todo_id` int NOT NULL AUTO_INCREMENT,
+  `todo_id` varchar(255) NOT NULL,
   `title` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -22,7 +22,7 @@ CREATE TABLE `todos` (
 
 | Name | Type | Default | Nullable | Extra Definition | Children | Parents | Comment |
 | ---- | ---- | ------- | -------- | ---------------- | -------- | ------- | ------- |
-| todo_id | int |  | false | auto_increment |  |  |  |
+| todo_id | varchar(255) |  | false |  |  |  |  |
 | title | varchar(255) |  | false |  |  |  |  |
 | created_at | timestamp | CURRENT_TIMESTAMP | false | DEFAULT_GENERATED |  |  |  |
 | updated_at | timestamp | CURRENT_TIMESTAMP | false | DEFAULT_GENERATED |  |  |  |
